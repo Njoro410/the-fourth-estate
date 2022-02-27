@@ -4,7 +4,15 @@
 {% block content %}
 
 {% for source in sources %}
-<h1>{{source.name}}</h1>
+<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
+    <h1>{{source.name}}</h1>
+    <li class="text-center">
+            <a href="/articles/{{ source.id }}">
+                {{source.name }}
+            </a>
+    </li>
+</div>
+
 {% endfor %}
 
 

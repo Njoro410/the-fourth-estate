@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title %} Top Headlines {% endblock %}
+
+
+{% block content %} 
+
+{% for article in articles %}
+<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
+    <p>{{article.description}}</p>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
