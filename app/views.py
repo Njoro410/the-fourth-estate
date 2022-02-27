@@ -1,8 +1,9 @@
 from flask import Blueprint,render_template,request
-from .request import fetch_sources
+from .request import fetch_sources, get_articles
 
 
 views = Blueprint('views',__name__)
+
 
 @views.route('/')
 def index():
@@ -12,6 +13,10 @@ def index():
     return render_template('index.html',sources=news_sources)
 
 
-@views.route('/top_headlines')
-def top_headlines():
-    return render_template('top-headlines.html')
+@views.route('/articles/<string:id>')
+def articles(id):
+
+    sources_articles = get_articles(id)
+    print(sources_articles)
+
+    return render_template('articles.html',articles=sources_articles)
