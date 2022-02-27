@@ -39,7 +39,8 @@
 
 <ul class="list-group list-group-flush">
     {% for article in articles[0:6] %}
-    <li class="list-group-item">{{article.title}}</li>
+    <a href="{{article.url}}"
+        class="list-group-item list-group-item-action list-group-item-secondary">{{article.title}}</a>
     {% endfor %}
 </ul>
 
@@ -51,11 +52,20 @@
     {% for article in articles %}
     <div class="col">
         <div class="card">
-            <img src="{{article.urlToImage}}" class="card-img-top" alt="..." width="80%">
+            <img src="{{article.urlToImage}}" class="card-img-top" alt="{{article.name}}" width="80%">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
+                <h6 class="card-title">{{article.title}}</h6>
+                <p class="card-text"><small class="text-muted">{{article.description}}</small></p>
+                {% if article.content %}
+                <p class="card-text">{{article.content | truncate(200)}} <a href="{{article.url}}">Read More...</a></p>
+                {% else %}
+                <a href="{{article.url}}" class="btn btn-outline-primary">Read More...</a></p>
+                {% endif %}
+
+
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Published on:{{article.publishedAt | truncate(15)}}</small>
             </div>
         </div>
     </div>
