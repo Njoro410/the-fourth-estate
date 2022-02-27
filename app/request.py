@@ -66,8 +66,8 @@ def process_results(sources_list):
     return sources_results
 
 
-def get_articles():
-    get_source_article_url = articles_url
+def get_articles(source):
+    get_source_article_url = articles_url.format(source, api_key)
     
 
     with urllib.request.urlopen(get_source_article_url) as url:
