@@ -2,14 +2,76 @@
 {% block title %} Top Headlines {% endblock %}
 
 
-{% block content %} 
+{% block carousel %}
 
-{% for article in articles %}
-<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
-    <p>{{article.description}}</p>
+<div id="carouselExampleDark" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        {% for article in articles[0:3] %}
+
+        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+            <img src="{{article.urlToImage}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{article.title}}</h5>
+                <p>{{article.description}}</p>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
+{% endblock %}
 
+{% block cards %}
+{% for article in articles[0:2] %}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+
+        <div class="col-md-5">
+            <img src="{{article.urlToImage}}" class="img-fluid rounded-start" alt="{{article.title}}" width="50%">
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endfor %}
+{% endblock %}
+
+{% block allarticles %}
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for article in articles %}
+    <div class="col">
+      <div class="card">
+        <img src="{{article.urlToImage}}" class="card-img-top" alt="..." width="80%">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
 
 
 {% endblock %}
