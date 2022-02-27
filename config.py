@@ -1,13 +1,15 @@
 import os
+
+
 class Config:
     '''
     General configuration parent class
     '''
-    NEWS_API_BASE_URL ='https://newsapi.org/v2/top-headlines/{}?apiKey=b17b95e4d3824e93a3a1a45b35bcef35'
+    NEWS_API_BASE_URL = 'https://newsapi.org/v2/top-headlines/{}?apiKey=b17b95e4d3824e93a3a1a45b35bcef35'
     ARTICLES_API_BASE_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey=b17b95e4d3824e93a3a1a45b35bcef35'
     NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    print(NEWS_API_KEY)
+  
 
 
 class ProdConfig(Config):
@@ -30,7 +32,8 @@ class DevConfig(Config):
 
     DEBUG = True
 
+
 config_options = {
-'development':DevConfig,
-'production':ProdConfig
+    'development': DevConfig,
+    'production': ProdConfig
 }
