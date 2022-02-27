@@ -7,15 +7,19 @@ api_key = None
 
 # get base url
 base_url = None
-article_base_url = None
+
+#get articles_url
+articles_url = None
+
 
 
 def configure_request(app):
-    global api_key, base_url
+    global api_key, base_url,articles_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
-    articles_base_url = app.config['ARTICLES_API_BASE_URL']
+    articles_url = app.config['ARTICLES_API_BASE_URL']
 
+    
 
 def fetch_sources(category):
     """
@@ -62,8 +66,9 @@ def process_results(sources_list):
     return sources_results
 
 
-def get_source_articles(id):
-    get_source_article_url = article_base_url.format(id, api_key)
+def get_articles():
+    get_source_article_url = articles_url
+    
 
     with urllib.request.urlopen(get_source_article_url) as url:
         article_details_data = url.read()
