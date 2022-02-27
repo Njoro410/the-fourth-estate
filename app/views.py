@@ -11,11 +11,6 @@ def index():
 
     return render_template('index.html',sources=news_sources)
 
-@views.route('/sources')
-def sources():
-
-
-    return render_template('sources.html')
 
 @views.route('/top_headlines')
 def top_headlines():
