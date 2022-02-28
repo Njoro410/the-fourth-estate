@@ -32,17 +32,27 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
+                    {% if isIndex %}
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                            aria-controls="offcanvasExample" data-bs-toggle="tooltip" data-bs-placement="left" title="Open a list of news sources" >
+                            aria-controls="offcanvasExample" data-bs-toggle="tooltip" data-bs-placement="left"
+                            title="Open a list of news sources">
                             Sources
                         </a>
                     </li>
                 </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" name="query" id="search" type="search" placeholder="Enter Keyword"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search Articles</button>
+                </form>
+
+                {% endif %}
             </div>
         </div>
     </nav>
     {% block content %} {% endblock %}
+
 
     <div class="container" id="c">
         <div class="row">
@@ -54,7 +64,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <div class="container">
         <div class="row">
