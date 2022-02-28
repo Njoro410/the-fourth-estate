@@ -1,6 +1,6 @@
 import urllib.request
 import json
-from .models import Sources, Articles
+from .models import Sources, Articles, Top
 
 # get API key
 api_key = None
@@ -11,13 +11,18 @@ base_url = None
 #get articles_url
 articles_url = None
 
+#get top_url
+top_url = None
+
 
 
 def configure_request(app):
-    global api_key, base_url,articles_url
+    global api_key, base_url,articles_url,top_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
     articles_url = app.config['ARTICLES_API_BASE_URL']
+    top_url = app.config['TOP_URL']
+
 
     
 
@@ -109,6 +114,56 @@ def process_articles(article_list):
         article_object = Articles(id,name,author,title,description,url,urlToImage,publishedAt,content)
         article_results.append(article_object)
     return article_results
+
+
+
+def get_headlines(country):
+    get_headline_url = top_url.format(country, api_key)
+    
+
+    with urllib.request.urlopen(get_headline_url) as url:
+        headline_details_data = url.read()
+        headline_details_response = json.loads(headline_details_data)
+
+        headline_results = None
+
+        if headline_details_response['articles']:
+            headline_results_list = headline_details_response['articles']
+            headline_results = process_articles(headline_results_list)
+
+    return headline_results
+
+
+def process_headlines(headline_list):
+    '''
+    Function  that processes the article results and transform them to a list of Objects
+
+    Args:
+        article_list: A list of dictionaries that contain article details
+
+    Returns :
+        article_results: A list of article objects
+    '''
+
+    headline_results = []
+    for headline_item in headline_list:
+        id = headline_item.get('id')
+        name = headline_item.get('name')
+        author = headline_item.get('author')
+        title = headline_item.get('title')
+        description = headline_item.get('description')
+        url = headline_item.get('url')
+        urlToImage = headline_item.get('urlToImage')
+        publishedAt = headline_item.get('publishedAt')
+        content = headline_item.get('content')
+
+        headline_object = Top(id,name,author,title,description,url,urlToImage,publishedAt,content)
+        headline_results.append(headline_object)
+    return headline_results
+
+
+
+
 
 
 
