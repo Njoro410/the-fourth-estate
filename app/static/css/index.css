@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+body {
+    font-family: 'Acme', sans-serif;
+}
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+.navbar-brand {
+    font-weight: bolder;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+.nav-item {
+    font-weight: bold;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+.info {
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Noto Serif Display', serif;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background: white;
+    border-radius: 0;
+    }
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(34, 201, 243, 0.2);
+}
+.card-title {
+    font-family: 'Noto Serif Display', serif;
+    font-size: 1.5vw;
+}
+.card-muted {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.5vw;
+}
