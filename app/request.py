@@ -8,23 +8,24 @@ api_key = None
 # get base url
 base_url = None
 
-#get articles_url
+# get articles_url
 articles_url = None
 
-#get top_url
+# get top_url
 top_url = None
 
+# get_search_url
+search_url = None
 
 
 def configure_request(app):
-    global api_key, base_url,articles_url,top_url
+    global api_key, base_url, articles_url, top_url, search_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
     articles_url = app.config['ARTICLES_API_BASE_URL']
     top_url = app.config['TOP_URL']
+    search_url = app.config['SEARCH_URL']
 
-
-    
 
 def fetch_sources(category):
     """
@@ -73,7 +74,6 @@ def process_results(sources_list):
 
 def get_articles(source):
     get_source_article_url = articles_url.format(source, api_key)
-    
 
     with urllib.request.urlopen(get_source_article_url) as url:
         article_details_data = url.read()
@@ -111,15 +111,14 @@ def process_articles(article_list):
         publishedAt = article_item.get('publishedAt')
         content = article_item.get('content')
 
-        article_object = Articles(id,name,author,title,description,url,urlToImage,publishedAt,content)
+        article_object = Articles(
+            id, name, author, title, description, url, urlToImage, publishedAt, content)
         article_results.append(article_object)
     return article_results
 
 
-
 def get_headlines(country):
     get_headline_url = top_url.format(country, api_key)
-    
 
     with urllib.request.urlopen(get_headline_url) as url:
         headline_details_data = url.read()
@@ -157,14 +156,22 @@ def process_headlines(headline_list):
         publishedAt = headline_item.get('publishedAt')
         content = headline_item.get('content')
 
-        headline_object = Top(id,name,author,title,description,url,urlToImage,publishedAt,content)
+        headline_object = Top(id, name, author, title,
+                              description, url, urlToImage, publishedAt, content)
         headline_results.append(headline_object)
     return headline_results
 
 
+def search_article(query):
+    search_article_url = search_url.format(query, api_key)
+    with urllib.request.urlopen(search_article_url) as url:
+        search_article_data = url.read()
+        search_article_response = json.loads(search_article_data)
 
+        search_article_results = None
 
+        if search_article_response['articles']:
+            search_article_list = search_article_response['articles']
+            search_article_results = process_headlines(search_article_list)
 
-
-
-
+    return search_article_results
