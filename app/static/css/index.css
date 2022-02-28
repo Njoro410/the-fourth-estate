@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
 
 body {
     font-family: 'Acme', sans-serif;
@@ -26,13 +26,13 @@ body {
 }
 
 .info {
-    margin-top: 30px;
+    margin-top: 8px;
     text-align: center;
-    font-family: 'Noto Serif Display', serif;
+    font-family: 'Vidaloka', serif;
 }
 
 .card {
-    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 50px 50px 0 rgba(0, 0, 0, 0.2);
     background: white;
     border-radius: 0;
     }
@@ -40,8 +40,9 @@ body {
     box-shadow: 0 20px 20px 0 rgba(34, 201, 243, 0.2);
 }
 .card-title {
-    font-family: 'Noto Serif Display', serif;
+    font-family: 'Vidaloka', serif;
     font-size: 1.5vw;
+    color: #492540;
 }
 .card-muted {
     font-family: 'EB Garamond', serif;
