@@ -17,10 +17,10 @@ an  application that lists top trending news headlines across the globe, list va
 
 
 
-## Deployment
+## Deployment-LIVE LINK
 
-This project has been deployed to Heroku
-
+This project has been deployed to Heroku 
+ - [the5thEstate](https://the5thestate.herokuapp.com/)
 
 ## Installation
 
